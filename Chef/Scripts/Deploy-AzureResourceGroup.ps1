@@ -16,6 +16,8 @@ Param(
 
 Import-Module Azure -ErrorAction SilentlyContinue
 
+$Error.Clear()
+
 try {
     [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace(" ","_"), "2.9")
 } catch { }
@@ -94,10 +96,18 @@ if ($UploadArtifacts) {
 
 # Create or update the resource group using the specified template file and template parameters file
 New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -Force -ErrorAction Stop 
-
+<#
+Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+                                   -TemplateFile $TemplateFile `
+                                   -TemplateParameterFile $TemplateParametersFile `
+                                   @OptionalParameters `
+                                   -Verbose
+#>
 New-AzureRmResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
                                    -ResourceGroupName $ResourceGroupName `
                                    -TemplateFile $TemplateFile `
                                    -TemplateParameterFile $TemplateParametersFile `
                                    @OptionalParameters `
                                    -Force -Verbose
+#$Error | Export-Clixml -Path C:\Temp\error.xml
+#$o | Export-Clixml -Path C:\Temp\test.xml

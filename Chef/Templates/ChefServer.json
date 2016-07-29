@@ -143,6 +143,8 @@
     "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
     "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
     "backendlbID": "[resourceId('Microsoft.Network/loadBalancers', variables('backendloadBalancerName'))]",
+    "lbProbeID": "[concat(variables('lbID'),'/probes/https')]",
+    "backendlbProbeID": "[concat(variables('backendlbID'),'/probes/leaderl')]",
     "LeaderSetupScriptFileName": "BELeaderSetup.sh",
     "LeaderSetupScriptFilePath": "[concat('Chef/CustomScripts/', variables('LeaderSetupScriptFileName'))]",
     "loadBalancerName": "[concat(variables('namingInfix'), 'lb')]",
@@ -282,7 +284,7 @@
             "properties": {
               "protocol": "Http",
               "port": 7331,
-              "requestPath": "/status"
+              "requestPath": "/leader"
             }
           }
         ],
@@ -294,7 +296,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('backendloadBalancerName'), '/backendAddressPools/', variables('backendbePoolName'))]" },
               "backendPort": 2379,
               "frontendIPConfiguration": { "id": "[variables('backendfrontEndIPConfigID')]" },
-              "frontendPort": 2379
+              "frontendPort": 2379,
+              "probe": { "id": "[variables('backendlbProbeID')" }
             }
           },
           {
@@ -304,7 +307,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('backendloadBalancerName'), '/backendAddressPools/', variables('backendbePoolName'))]" },
               "backendPort": 5432,
               "frontendIPConfiguration": { "id": "[variables('backendfrontEndIPConfigID')]" },
-              "frontendPort": 5432
+              "frontendPort": 5432,
+              "probe": { "id": "[variables('backendlbProbeID')" }
             }
           },
           {
@@ -314,7 +318,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('backendloadBalancerName'), '/backendAddressPools/', variables('backendbePoolName'))]" },
               "backendPort": 7331,
               "frontendIPConfiguration": { "id": "[variables('backendfrontEndIPConfigID')]" },
-              "frontendPort": 7331
+              "frontendPort": 7331,
+              "probe": { "id": "[variables('backendlbProbeID')" }
             }
           },
           {
@@ -324,7 +329,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('backendloadBalancerName'), '/backendAddressPools/', variables('backendbePoolName'))]" },
               "backendPort": 9200,
               "frontendIPConfiguration": { "id": "[variables('backendfrontEndIPConfigID')]" },
-              "frontendPort": 9200
+              "frontendPort": 9200,
+              "probe": {"id": "[variables('backendlbProbeID')"}
             }
           }
         ]
@@ -388,7 +394,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/backendAddressPools/', variables('bePoolName'))]" },
               "backendPort": 443,
               "frontendIPConfiguration": { "id": "[variables('frontEndIPConfigID')]" },
-              "frontendPort": 443
+              "frontendPort": 443,
+              "probe": { "id": "[variables('lbProbeID')" }
             }
           },
           {
@@ -398,7 +405,8 @@
               "backendAddressPool": { "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/backendAddressPools/', variables('bePoolName'))]" },
               "backendPort": 80,
               "frontendIPConfiguration": { "id": "[variables('frontEndIPConfigID')]" },
-              "frontendPort": 80
+              "frontendPort": 80,
+              "probe": { "id": "[variables('lbProbeID')" }
             }
           }
         ]

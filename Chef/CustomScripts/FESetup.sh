@@ -1,3 +1,12 @@
-# Custom Script for Linux
-echo "FE" >> /root/fe.log
-date >> /root/fe.log
+# Other FEs
+wget https://packages.chef.io/stable/ubuntu/14.04/chef-server-core_12.8.0-1_amd64.deb
+dpkg -i chef-server-core_12.8.0-1_amd64.deb
+curl -o /etc/opscode/chef-server.rb "$i/chef-server.rb.`hostname`$2"
+curl -o /etc/opscode/private-chef-secrets.json "$1/private-chef-secrets.json$2" 
+curl -o /etc/opscode/webui_priv.pem "$1/webui_priv.pem$2" 
+curl -o /etc/opscode/webui_pub.pem "$1/webui_pub.pem$2" 
+curl -o /etc/opscode/pivotal.pem "$1/pivotal.pem$2" 
+mkdir -p /var/opt/opscode/upgrades/
+curl -o /var/opt/opscode/upgrades/migration-level "$1/migration-level$2" 
+touch /var/opt/opscode/bootstrapped
+chef-server-ctl reconfigure 

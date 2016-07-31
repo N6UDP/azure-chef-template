@@ -6,10 +6,13 @@
             "value": "lburton"
         },
         "ChefDNSName": {
-            "value": "cttt03"
+            "value": "putdnsnamehere"
         },
         "sshKeyData": {
             "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiFojdnZ74xtYokyzeDbEpN4qig7BuRPVeG3GF3xzgPXpseB/rigGHuFjaL8OtCh2kYIfZMk+D+VFx+IHVjBhl5YjEkYBTXRqFzQxi7nu9dCRL4V1JDnzCrhajuG4mM1vmfnAJ/BStbO+O7NDt4Odl2meTH8TLnVxMtXGWMJ+fD+A5HA8sMEKxUIdGCxx4Q0tCd3BGAwog94WhIUwBMZ17bHbaBjMYYPjDZARLCdh4Nvnh4kPVDDeAjfQcApeAEfMOI09xEXPaCjEQHWlvmDLBjdrZzzQqkFVbm1BeXdwXiT8ydGPMU3imRNSbIBSCYpDvyFC9OWmhXrX4sS6IbftX"
+        },
+        "ChefBEvmSize": {
+            "value": "Standard_D3_v2"
         }
     }
 }

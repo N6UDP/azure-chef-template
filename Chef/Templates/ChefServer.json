@@ -309,7 +309,8 @@
               "frontendPort": 443,
               "probe": {
                 "id": "[variables('lbProbeID')]"
-              }
+              },
+              "loadDistribution": "SourceIPProtocol"
             }
           },
           {
@@ -322,7 +323,8 @@
               "frontendPort": 80,
               "probe": {
                 "id": "[variables('lbProbeID')]"
-              }
+              },
+              "loadDistribution": "SourceIPProtocol"
             }
           }
         ]

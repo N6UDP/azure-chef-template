@@ -6,7 +6,7 @@ wget -qO - https://downloads.chef.io/packages-chef-io-public.key | sudo apt-key 
 echo "deb https://packages.chef.io/stable-apt trusty main" > /etc/apt/sources.list.d/chef-stable.list
 apt-get update
 apt-get install -y chef-server-core chef-manage
-curl -o /etc/opscode/chef-server.rb "$i/chef-server.rb.`hostname`$2"
+curl -o /etc/opscode/chef-server.rb "$1/chef-server.rb.`hostname`$2"
 curl -o /etc/opscode/private-chef-secrets.json "$1/private-chef-secrets.json$2" 
 curl -o /etc/opscode/webui_priv.pem "$1/webui_priv.pem$2" 
 curl -o /etc/opscode/webui_pub.pem "$1/webui_pub.pem$2" 

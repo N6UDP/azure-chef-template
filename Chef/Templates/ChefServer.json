@@ -123,6 +123,13 @@
         "description": "URL for Azure Storage should need changing for regional only"
       },
       "defaultValue": "core.windows.net"
+    },
+    "ubuntuVersion": {
+      "type": "string",
+      "defaultValue": "14.04.4-LTS",
+      "metadata": {
+        "description": "Ubuntu version"
+      }
     }
   },
   "variables": {
@@ -152,7 +159,7 @@
     "osType": {
       "publisher": "Canonical",
       "offer": "UbuntuServer",
-      "sku": "[variables('ubuntuVersion')]",
+      "sku": "[parameters('ubuntuVersion')]",
       "version": "latest"
     },
     "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]",
@@ -161,7 +168,6 @@
     "subnetName": "chefsubnet",
     "subnetPrefix": "10.0.0.0/24",
     "SubnetRef": "[concat(variables('VnetID'), '/subnets/', variables('subnetName'))]",
-    "ubuntuVersion": "14.04.2-LTS",
     "virtualNetworkName": "chefvnet",
     "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
   },

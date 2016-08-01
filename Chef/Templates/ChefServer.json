@@ -116,6 +116,13 @@
       "metadata": {
         "description": "SSH rsa public key file as a string."
       }
+    },
+    "storageurl": {
+      "type": "string",
+      "metadata": {
+        "description": "URL for Azure Storage should need changing for regional only"
+      },
+      "defaultValue": "core.windows.net"
     }
   },
   "variables": {
@@ -423,7 +430,7 @@
           "osDisk": {
             "name": "BE0OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('chefbeName'), '.blob.core.windows.net/', variables('BEStorageAccountContainerName'), '/', 'BE0OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('chefbeName'), '.blob.', parameters('storageurl'), '/', variables('BEStorageAccountContainerName'), '/', 'BE0OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -534,7 +541,7 @@
           "osDisk": {
             "name": "BE1OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('chefbeName'), '.blob.core.windows.net/', variables('BEStorageAccountContainerName'), '/', 'BE1OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('chefbeName'), '.blob.', parameters('storageurl'), '/', variables('BEStorageAccountContainerName'), '/', 'BE1OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -647,7 +654,7 @@
           "osDisk": {
             "name": "BE2OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('chefbeName'), '.blob.core.windows.net/', variables('BEStorageAccountContainerName'), '/', 'BE2OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('chefbeName'), '.blob.', parameters('storageurl'), '/', variables('BEStorageAccountContainerName'), '/', 'BE2OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -771,7 +778,7 @@
           "osDisk": {
             "name": "FE0OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('cheffeName'), '.blob.core.windows.net/', variables('FEStorageAccountContainerName'), '/', 'FE0OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('cheffeName'), '.blob.', parameters('storageurl'), '/', variables('FEStorageAccountContainerName'), '/', 'FE0OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -896,7 +903,7 @@
           "osDisk": {
             "name": "FE1OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('cheffeName'), '.blob.core.windows.net/', variables('FEStorageAccountContainerName'), '/', 'FE1OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('cheffeName'), '.blob.', parameters('storageurl'), '/', variables('FEStorageAccountContainerName'), '/', 'FE1OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -1019,7 +1026,7 @@
           "osDisk": {
             "name": "FE2OSDisk",
             "vhd": {
-              "uri": "[concat('http://', variables('cheffeName'), '.blob.core.windows.net/', variables('FEStorageAccountContainerName'), '/', 'FE2OSDisk', '.vhd')]"
+              "uri": "[concat('http://', variables('cheffeName'), '.blob.', parameters('storageurl'), '/', variables('FEStorageAccountContainerName'), '/', 'FE2OSDisk', '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
